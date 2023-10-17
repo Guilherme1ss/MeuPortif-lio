@@ -20,7 +20,7 @@ export const Title = styled.div`
   font-size: 30px;
 `;
 
-export const NavLinks = styled.nav`
+export const NavLinks = styled.nav<{ $sidebar?: boolean }>` // Adicione o tipo para $sidebar
   display: flex;
   gap: 20px;
 
@@ -29,12 +29,11 @@ export const NavLinks = styled.nav`
     background-color: #161616;
     position: fixed;
     height: 100%;
-
     gap: 0px;
     top: 0px;
     right: 0px;
     width: 60%;
-    right: ${props => props.sidebar ? '0' : '-100%'};
+    right: ${props => (props.$sidebar ? '0' : '-100%')}; // Use $sidebar para evitar passar para o DOM
     transition: 0.5s;
 
     a {
@@ -50,7 +49,7 @@ export const Ancora = styled.a`
   font-size: 20px;
   height: 95px;
   transition: 0.3s;
-  
+
   &.active {
     background-color: black;
   }
@@ -66,7 +65,7 @@ export const Menu = styled.div`
   font-size: 30px;
   display: none;
   cursor: pointer;
-  
+
   @media (max-width: 560px) {
     display: flex;
   }
@@ -79,7 +78,7 @@ export const CloseSidebar = styled.div`
   position: absolute;
   display: none;
   cursor: pointer;
-  
+
   @media (max-width: 560px) {
     display: flex;
   }
