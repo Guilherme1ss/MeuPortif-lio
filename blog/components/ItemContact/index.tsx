@@ -1,7 +1,12 @@
-import React from 'react'
-import { Item, Icon, Text } from './style'
+import React, { FC, ReactElement } from 'react';
+import { Item, Icon, Text } from './style';
 
-export default function ItemContact({ IconFa, LinkContact }) {
+interface ItemContactProps {
+  IconFa: FC;
+  LinkContact: string;
+}
+
+const ItemContact: FC<ItemContactProps> = ({ IconFa, LinkContact }): ReactElement => {
   return (
     <Item>
       <Icon>
@@ -11,5 +16,7 @@ export default function ItemContact({ IconFa, LinkContact }) {
         {LinkContact}
       </Text>
     </Item>
-  )
+  );
 }
+
+export default ItemContact;

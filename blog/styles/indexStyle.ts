@@ -71,6 +71,7 @@ export const LinkProjects = styled.button`
   }
 `;
 
+
 export const Logo = styled.div`
   width: 50%;
   display: flex;
@@ -80,6 +81,7 @@ export const Logo = styled.div`
   img {
     width: 25rem;
     height: 25rem;
+    border-radius: 10px;
   }
 
   @media (max-width: 760px) {

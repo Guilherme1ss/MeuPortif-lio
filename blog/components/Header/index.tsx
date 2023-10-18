@@ -4,13 +4,17 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Header() {
-  const [sidebar, setSidebar] = useState<boolean>(false); // Adicionando tipo boolean
+interface HeaderProps {
+  name: string;
+}
+
+const Header: React.FC<HeaderProps> = () => {
+  const [sidebar, setSidebar] = useState<boolean>(false);
   const { asPath } = useRouter();
 
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = (): void => setSidebar(!sidebar);
 
-  function activeLink(path: string) {
+  function activeLink(path: string): string {
     return asPath === `/${path}` ? 'active' : '';
   }
 
@@ -28,7 +32,7 @@ export default function Header() {
         <Menu>
           <FaBars onClick={showSidebar} />
         </Menu>
-        <NavLinks sidebar={sidebar}>
+        <NavLinks $sidebar={sidebar}>
           <CloseSidebar onClick={showSidebar}><FaTimes /></CloseSidebar>
           <Link href="/">
             <Ancora className={activeLink('')} onClick={showSidebar}>Home</Ancora>
@@ -44,3 +48,5 @@ export default function Header() {
     </Container>
   );
 }
+
+export default Header;

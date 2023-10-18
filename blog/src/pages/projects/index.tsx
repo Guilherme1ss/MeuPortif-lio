@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Content, Ul, Li, TitleProject, Url, Created_at } from './style'
+import React, { useEffect, useState } from 'react';
+import { Container, Content, Ul, Li, TitleProject, Url, Created_at } from './style';
 
-export default function Projects() {
-  const [itemsApi, setItemsApi] = useState([])
+interface Item {
+  id: number;
+  name: string;
+  url: string;
+  created_at: string;
+}
+
+const Projects: React.FC = () => {
+  const [itemsApi, setItemsApi] = useState<Item[]>([]);
 
   useEffect(() => {
     let abortController = new AbortController(); 
@@ -11,18 +18,18 @@ export default function Projects() {
       fetch('https://api.github.com/users/Guilherme1ss/repos')
       .then(async res => {
         if (!res.ok) {
-          throw new Error(res.status)
+          throw new Error(res.status.toString());
         }
-        var data = await res.json()
-        setItemsApi(data)
+        var data = await res.json();
+        setItemsApi(data);
       })
-      .catch(e => console.log(e))
+      .catch(e => console.log(e));
     }
 
-    getGitHubAPI()
+    getGitHubAPI();
 
     return () => abortController.abort();  
-  }, [])
+  }, []);
 
   return (
     <Container>
@@ -40,5 +47,7 @@ export default function Projects() {
        </Ul>
      </Content>
    </Container>
-  )
+  );
 }
+
+export default Projects;
